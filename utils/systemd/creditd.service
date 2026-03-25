@@ -1,0 +1,20 @@
+[Unit]
+Description=Credit Full Node
+After=network-online.target
+
+[Service]
+User=credit
+Group=credit
+WorkingDirectory=/var/lib/credit
+StateDirectory=credit
+LogsDirectory=credit
+
+Type=simple
+ExecStart=/usr/bin/creditd --config-file /etc/creditd.conf --non-interactive
+StandardOutput=null
+StandardError=null
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

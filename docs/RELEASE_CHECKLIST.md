@@ -1,0 +1,40 @@
+# Credit Release Checklist
+
+- [ ] Security audit
+- [ ] Code audit
+- [ ] Hardware wallet compatibility reviewed
+  - [ ] Ledger status checked
+  - [ ] Trezor status checked
+- [ ] Network identity confirmed
+  - [ ] Version name and binary names match the planned release
+  - [ ] Mainnet, testnet, and stagenet ports/prefixes/nonces are documented
+  - [ ] Seed nodes and DNS seeds are current
+- [ ] Checkpoints updated
+  - [ ] Update `src/checkpoints/checkpoints.cpp` with a recent hardcoded checkpoint
+  - [ ] Update `src/blocks/checkpoints.dat` with `./credit-blockchain-export --output-file checkpoints.dat --block-stop <recent block height> --blocksdat`
+  - [ ] Update `expected_block_hashes_hash` in `src/cryptonote_core/blockchain.cpp` with the new `checkpoints.dat` SHA-256 hash
+- [ ] Testnet verification complete
+  - [ ] Release-specific CLI and RPC coverage
+  - [ ] Wallet restore / transfer / mining checks
+- [ ] Stagenet verification complete
+- [ ] Mainnet bootstrap verified
+  - [ ] At least two public seed nodes reachable
+  - [ ] Fresh node can discover peers and sync from the published seed list
+  - [ ] Operator docs match the live ports and bootstrap endpoints
+- [ ] Release artifacts built and validated
+  - [ ] Linux binaries
+  - [ ] Windows binaries
+  - [ ] Hashes and signatures published
+- [ ] Public docs updated
+  - [ ] `README.md`
+  - [ ] `docs/credit/public-mainnet-quickstart.md`
+  - [ ] `docs/credit/seed-node-operator.md`
+  - [ ] `docs/credit/launch-inputs.md`
+- [ ] Ecosystem notifications sent
+  - [ ] Wallet partners
+  - [ ] Exchanges / explorers / pools
+  - [ ] Infrastructure / monitoring providers
+- [ ] Release announcement published
+  - [ ] Website or download page updated
+  - [ ] Social channels updated
+  - [ ] Operator channels updated

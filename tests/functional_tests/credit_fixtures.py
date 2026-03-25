@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+SEED = "velvet lymph giddy number token physics poetry unquoted nibs useful sabotage limits benches lifestyle eden nitrogen anvil fewest avoid batch vials washing fences goat unquoted"
+SECONDARY_SEED = "peeled mixture ionic radar utopia puddle buying illness nuns gadget river spout cavernous bounced paradise drunk looking cottage jump tequila melting went winter adjust spout"
+TERTIARY_SEED = "dilute gutter certain antics pamphlet macro enjoy left slid guarded bogeys upload nineteen bomb jubilee enhanced irritate turnip eggs swung jukebox loudly reduce sedan slid"
+SEEDS = [SEED, SECONDARY_SEED, TERTIARY_SEED]
+
+PAYMENT_ID = "1122334455667788"
+URI_SCHEME = "credit:"
+OPENALIAS_ALIAS = "donate@credit.example"
+
+PRIMARY_ADDRESS = "Cj7wjZErshg4886T7196doS9GPMzexD9gXpsZJDwVjeRVdFCSoHnv7KPbBeGpzJBzHRCAs9UxqeoyFQMYbqSWYTfJHYV264"
+SECONDARY_ADDRESS = "Cknag3SwjD7RDV5aAhLJzQCjDz2ViLRduE3ijDZu3osWKBjMGkV1XPk4pfDUMqt1Aiezvephdqm6YD19GKFD9ZcXVYLYQP7"
+TERTIARY_ADDRESS = "CoK3WX2JYfZBUMhuykdK3gQ98XDqDTYW1hNLaXNvjpsJaSbNtdXh1sKMsdVgqkaihChAzEy29zEDPMR3NHQvGoZCLEARBJQ"
+
+PRIMARY_ACCOUNT_1_ADDRESS = "D3rZYLEojn93LUMssBCumk3MfyEsFqLAaGDf6oxddu61EgSFzt8gCwUD4tr3kp9TUfdPs2CnpD7xLZzyC1Ei9UsW3mW4B5i"
+PRIMARY_ACCOUNT_2_ADDRESS = "DCfmXJXpbjSbkvaBnG7vYP6DCNneLWcXqNmfPmyyDkavAUUgrHQEAhTNK3jEq69kGPDrd3i5inPivCwTvvA12eQ4SJyFjYv"
+PRIMARY_SUBADDRESS_0_1 = "D5Sbtm9jfQNU3NN1VpFRndSukeyEb3Xpv8qZjjsoJZnTYpDYceuUTpog13D7qPxpviS7J29bSgSkR11hFFoXWk2yNZr8uGo"
+PRIMARY_SUBADDRESS_1_1 = "D8tADc4NUe2ikVBmG1TaP1KumZ3hB3Q5f4wZRjuppNdwYjWzs2RgbLYQgtpdu2YdoTT3EZhiUGaPJQt2FsykeFZbCxFVyko"
+PRIMARY_SUBADDRESS_1_2 = "D8Mr6g7vUSbD3Frefqnrqif11TjVsTPaTcp37kqqKMrdDRUhpJRczeR7KiBmSHF32UJLP3HHhKUDmEQyJrv2mV8yFC9jj81"
+PRIMARY_SUBADDRESS_0_999 = "DCSW6g1F5LFP14AKnZUBwnXWj46MuNmLvHfPTpmry52DbfNjjHVvHUk4mczU8nj8yZ57zBhksTJ8kM5xKeJXw55kCLWFfoK"
+PRIMARY_INTEGRATED_ADDRESS = "CtpckN4MUyC4886T7196doS9GPMzexD9gXpsZJDwVjeRVdFCSoHnv7KPbBeGpzJBzHRCAs9UxqeoyFQMYbqSWYTfSbwaL5pZWfQGPAHAxC"
+
+TESTNET_PRIMARY_ADDRESS = "DEDxmyhLhWE4886T7196doS9GPMzexD9gXpsZJDwVjeRVdFCSoHnv7KPbBeGpzJBzHRCAs9UxqeoyFQMYbqSWYTfJLwtURN"
+TESTNET_ACCOUNT_1_ADDRESS = "DYxaakhHZah3LUMssBCumk3MfyEsFqLAaGDf6oxddu61EgSFzt8gCwUD4tr3kp9TUfdPs2CnpD7xLZzyC1Ei9UsW3o98awM"
+TESTNET_SUBADDRESS_1_1 = "DdzBG2WrJSaikVBmG1TaP1KumZ3hB3Q5f4wZRjuppNdwYjWzs2RgbLYQgtpdu2YdoTT3EZhiUGaPJQt2FsykeFZbCrUnZBz"
+TESTNET_INTEGRATED_ADDRESS = "DPvdnnWqJmk4886T7196doS9GPMzexD9gXpsZJDwVjeRVdFCSoHnv7KPbBeGpzJBzHRCAs9UxqeoyFQMYbqSWYTfSbwaL5pZWfQGNkoaT6"
+
+STAGENET_PRIMARY_ADDRESS = "DjKypQ9pXJn4886T7196doS9GPMzexD9gXpsZJDwVjeRVdFCSoHnv7KPbBeGpzJBzHRCAs9UxqeoyFQMYbqSWYTfJL9pdQs"
+STAGENET_ACCOUNT_1_ADDRESS = "E44bdB9mPPF3LUMssBCumk3MfyEsFqLAaGDf6oxddu61EgSFzt8gCwUD4tr3kp9TUfdPs2CnpD7xLZzyC1Ei9UsW3kgpHV3"
+STAGENET_SUBADDRESS_1_1 = "E96CJSyL8F8ikVBmG1TaP1KumZ3hB3Q5f4wZRjuppNdwYjWzs2RgbLYQgtpdu2YdoTT3EZhiUGaPJQt2FsykeFZbCwgL9WY"
+STAGENET_INTEGRATED_ADDRESS = "Du2eqCyK8aJ4886T7196doS9GPMzexD9gXpsZJDwVjeRVdFCSoHnv7KPbBeGpzJBzHRCAs9UxqeoyFQMYbqSWYTfSbwaL5pZWfQGNUQVpC"
+
+BAD_PRIMARY_ADDRESS = PRIMARY_ADDRESS[:-1] + ("1" if PRIMARY_ADDRESS[-1] != "1" else "2")
+
+URI_ADDRESSES = [
+    PRIMARY_ADDRESS,
+    PRIMARY_INTEGRATED_ADDRESS,
+    PRIMARY_ACCOUNT_1_ADDRESS,
+]
+
+VALIDATE_ADDRESS_CASES = [
+    ("mainnet", "", PRIMARY_ADDRESS),
+    ("mainnet", "", SECONDARY_ADDRESS),
+    ("mainnet", "i", PRIMARY_INTEGRATED_ADDRESS),
+    ("mainnet", "s", PRIMARY_ACCOUNT_1_ADDRESS),
+    ("mainnet", "s", PRIMARY_SUBADDRESS_1_1),
+    ("testnet", "", TESTNET_PRIMARY_ADDRESS),
+    ("testnet", "i", TESTNET_INTEGRATED_ADDRESS),
+    ("testnet", "s", TESTNET_ACCOUNT_1_ADDRESS),
+    ("testnet", "s", TESTNET_SUBADDRESS_1_1),
+    ("stagenet", "", STAGENET_PRIMARY_ADDRESS),
+    ("stagenet", "i", STAGENET_INTEGRATED_ADDRESS),
+    ("stagenet", "s", STAGENET_ACCOUNT_1_ADDRESS),
+    ("stagenet", "s", STAGENET_SUBADDRESS_1_1),
+]
+
+URI_INVALID_NETWORK_ADDRESSES = [
+    TESTNET_PRIMARY_ADDRESS,
+    STAGENET_INTEGRATED_ADDRESS,
+    STAGENET_ACCOUNT_1_ADDRESS,
+]
