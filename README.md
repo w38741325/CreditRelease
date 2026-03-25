@@ -78,6 +78,16 @@ Build outputs are written to `build/bin/`.
 
 If you start the binaries from PowerShell instead of the MSYS2 shell, add `C:\msys64\mingw64\bin` to `PATH` first so the MinGW runtime DLLs can be located.
 
+If you want to launch the Windows executables from a regular `cmd.exe` or PowerShell session without editing `PATH`, copy these runtime DLLs from `C:\msys64\mingw64\bin` into your build `bin\` directory:
+
+- `libgcc_s_seh-1.dll`
+- `libiconv-2.dll`
+- `libicudt78.dll`
+- `libicuin78.dll`
+- `libicuuc78.dll`
+- `libstdc++-6.dll`
+- `libwinpthread-1.dll`
+
 ## Optional Functional Test Dependencies
 
 If you plan to run the Python-backed functional tests, install the packages currently referenced by `tests/README.md`:
@@ -88,7 +98,7 @@ pip install requests psutil monotonic zmq deepdiff
 
 ## Start A Local Node
 
-The simplest Windows launch path from PowerShell is:
+Windows PowerShell example:
 
 ```powershell
 $env:PATH = "C:\msys64\mingw64\bin;$env:PATH"
@@ -96,6 +106,42 @@ $env:PATH = "C:\msys64\mingw64\bin;$env:PATH"
 ```
 
 This starts a local mainnet daemon with the current Credit launch defaults and explicit bootstrap peers.
+
+If you use `cmd.exe` instead of PowerShell, do not use PowerShell backticks for line continuation. Either keep the command on one line or use `^`.
+
+## Mine From Windows
+
+For an initial local miner setup on Windows, keep the daemon running in one terminal and use a second terminal for wallet creation.
+
+Start the daemon from PowerShell:
+
+```powershell
+$env:PATH = "C:\msys64\mingw64\bin;$env:PATH"
+cd C:\path\to\CreditRelease\build
+.\bin\creditd.exe --data-dir .\mainnet-node --p2p-bind-ip 127.0.0.1 --p2p-bind-port 47080 --rpc-bind-ip 127.0.0.1 --rpc-bind-port 47081 --zmq-rpc-bind-ip 127.0.0.1 --zmq-rpc-bind-port 47082 --seed-node 45.63.65.47:47080 --seed-node 144.202.61.40:47080
+```
+
+Create a wallet in a second PowerShell window:
+
+```powershell
+$env:PATH = "C:\msys64\mingw64\bin;$env:PATH"
+cd C:\path\to\CreditRelease\build
+mkdir .\wallets -ea 0
+.\bin\credit-wallet-cli.exe --offline --generate-new-wallet .\wallets\first-miner --password YOUR_STRONG_PASSWORD --mnemonic-language English
+```
+
+After the wallet prints your Credit address and seed words, return to the daemon console and start mining there:
+
+```text
+start_mining YOUR_CREDIT_ADDRESS 1 false true
+```
+
+Useful daemon checks:
+
+```text
+mining_status
+status
+```
 
 ## Wallet Usage
 
