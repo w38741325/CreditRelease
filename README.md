@@ -20,6 +20,49 @@ This repository builds and ships:
 | Fallback seed nodes | `45.63.65.47:47080`, `144.202.61.40:47080` |
 | DNS seed hostnames | Not configured yet |
 
+## Build From Source (Linux / Ubuntu)
+
+The verified Linux path for public mainnet operators is Ubuntu with CMake and Ninja.
+
+Install the build dependencies:
+
+```bash
+sudo apt update
+sudo DEBIAN_FRONTEND=noninteractive apt install -y \
+  build-essential ca-certificates git cmake ninja-build pkg-config ccache \
+  libboost-all-dev libssl-dev libsodium-dev libunbound-dev libzmq3-dev \
+  libreadline-dev curl
+```
+
+Clone the repository and build the daemon plus wallet binaries:
+
+```bash
+git clone https://github.com/w38741325/CreditRelease.git
+cd CreditRelease
+
+cmake -S . -B build-linux -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DMANUAL_SUBMODULES=1 \
+  -DBUILD_TESTS=OFF \
+  -DUSE_DEVICE_TREZOR=OFF
+
+cmake --build build-linux --target daemon simplewallet wallet_rpc_server --parallel "$(nproc)"
+```
+
+Install the resulting binaries into `/usr/bin`:
+
+```bash
+sudo install -Dm755 build-linux/bin/creditd /usr/bin/creditd
+sudo install -Dm755 build-linux/bin/credit-wallet-cli /usr/bin/credit-wallet-cli
+sudo install -Dm755 build-linux/bin/credit-wallet-rpc /usr/bin/credit-wallet-rpc
+```
+
+Build outputs are written to `build-linux/bin/`.
+
+For a public bootstrap or seed node, keep TCP `47080` reachable and usually keep `47081` and `47082` restricted to localhost or trusted operators. The checked-in service template lives at `utils/systemd/creditd.service`, and the fuller operator runbook is in `docs/credit/seed-node-operator.md`.
+
+`MANUAL_SUBMODULES=1` only skips the CMake submodule freshness check. The dependency trees used by this repo are already vendored under `external/`.
+
 ## Build From Source (Windows / MSYS2 MinGW64)
 
 The verified Windows build path for this repository is `MSYS2 MinGW64`.
@@ -34,8 +77,6 @@ cmake --build build --target daemon simplewallet wallet_rpc_server unit_tests fu
 Build outputs are written to `build/bin/`.
 
 If you start the binaries from PowerShell instead of the MSYS2 shell, add `C:\msys64\mingw64\bin` to `PATH` first so the MinGW runtime DLLs can be located.
-
-`MANUAL_SUBMODULES=1` only skips the CMake submodule freshness check. The dependency trees used by this repo are already vendored under `external/`.
 
 ## Optional Functional Test Dependencies
 
